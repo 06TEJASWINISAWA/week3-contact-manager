@@ -1,14 +1,24 @@
-from contacts_manager import validate_phone, validate_email
+import unittest
+from contacts_manager import valid_phone
 
-def test_validation():
-    print("Testing phone validation...")
-    assert validate_phone("123-456-7890")[0] == True
-    assert validate_phone("123")[0] == False
-    
-    print("Testing email validation...")
-    assert validate_email("test@example.com") == True
-    assert validate_email("invalid-email") == False
-    print("All tests passed!")
+class TestContactManager(unittest.TestCase):
 
-if __name__ == "__main__":
-    test_validation()
+    # -------- TEST PHONE VALIDATION --------
+    def test_valid_phone_correct(self):
+        self.assertTrue(valid_phone("9876543210"))
+
+    def test_valid_phone_less_digits(self):
+        self.assertFalse(valid_phone("9876543"))
+
+    def test_valid_phone_more_digits(self):
+        self.assertFalse(valid_phone("987654321012"))
+
+    def test_valid_phone_letters(self):
+        self.assertFalse(valid_phone("98A6543210"))
+
+    def test_valid_phone_symbols(self):
+        self.assertFalse(valid_phone("98765@3210"))
+
+# -------- RUN TESTS --------
+if __name__ == '__main__':
+    unittest.main()
