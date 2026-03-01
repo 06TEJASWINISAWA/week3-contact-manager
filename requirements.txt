@@ -1,0 +1,3 @@
+requirements.txt:
+Since this project uses standard libraries(json,re, csv, datetime),
+you can leave this file empty or list (python-dateutil)if you plan to extend it.
